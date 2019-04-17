@@ -72,14 +72,30 @@ WSGI_APPLICATION = 'analytixworld.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
+MASTER_DB_NAME="analytixworld"
+MASTER_DB_USERNAME="postgres"
+MASTER_DB_PASSWORD=""
+MASTER_DB_IP="localhost"
+MASTER_DB_PORT="5432"
+print("Using MASTER_DB_NAME_FOR_ENV - ", MASTER_DB_NAME, " with IP - ", str(os.environ["MASTER_DB_IP"]), " and port - ", str(os.environ["MASTER_DB_PORT"]))
+GLOBAL_CONNECTION_MAX_TIME_SEC = 30
+DEFAULT_DB_FOR_MASTER="default"
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    #'default': {
+    #    'ENGINE': 'django.db.backends.sqlite3',
+    #    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    #}
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql_psycopg2',
+                #'ENGINE': 'django_postgrespool',
+                'NAME': MASTER_DB_NAME,
+                'USER': 'postgres',
+                'PASSWORD': str(os.environ["MASTER_DB_PASSWORD"]),
+                'HOST': str(os.environ["MASTER_DB_IP"]),
+                'PORT': str(os.environ["MASTER_DB_PORT"]),
+                'CONN_MAX_AGE': GLOBAL_CONNECTION_MAX_TIME_SEC,
+                },
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
