@@ -9,4 +9,5 @@ pipenv install --dev
 pipenv install Django
 pipenv install psycopg2
 pipenv install requests
-
+#pipenv run python manage.py startapp users
+#pipenv run python manage.py makemigrations users
