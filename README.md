@@ -9,7 +9,7 @@ Hiring made easy by applying AI and ML
 
 ### Environment Setup
 
-Run "set_env.sh" to installed Django 2.2 or above and virtualenv with name "runme". 
+Run "run\_setup.sh" to installed Django 2.2 or above and virtualenv with name "runme". 
 
 ### Run the application
 Application will run on port 8000 by default by running shell script "runserver.sh"
