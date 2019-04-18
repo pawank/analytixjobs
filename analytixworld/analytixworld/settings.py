@@ -66,6 +66,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.slack',
     # 'allauth.socialaccount.providers.twitter',
     # 'allauth.socialaccount.providers.windowslive',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -182,6 +183,15 @@ ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ENVIRONMENT_NAME = "Production Server"
 ENVIRONMENT_COLOR = "#FF2222"
 ENVIRONMENT_ADMIN_SELECTOR = "grp-header"
+
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
 
 try:
     from local_settings import *
