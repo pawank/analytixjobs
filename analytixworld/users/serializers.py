@@ -1,5 +1,5 @@
 from django.conf.urls import url, include
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Group
 from rest_framework import routers, serializers, viewsets
 from users.models import CustomUser
 
@@ -9,4 +9,10 @@ from users.models import CustomUser
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('url', 'username', 'email', 'is_staff')
+        fields = ('url', 'username', 'email', 'is_staff', 'groups')
+
+
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Group
+        fields = ('url', 'name')
