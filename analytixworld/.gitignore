@@ -1,3 +1,9 @@
 runme
 .git
 *.pyc
+analytixworld/local_settings.py
+db.sqlite3
+*.pem
+*.lock
+.vscode
+.venv

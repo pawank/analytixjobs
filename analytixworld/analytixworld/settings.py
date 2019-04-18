@@ -23,9 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!%(48yvixig7dfsfw36_9^woaywxu6dhw+9no6=5xzd@3mpp2+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+#ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'localhost:8000']
 
 
 # Application definition
@@ -38,6 +39,8 @@ AUTHENTICATION_BACKENDS = (
 )
 
 INSTALLED_APPS = [
+    'django_admin_env_notice',
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,6 +91,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "django_admin_env_notice.context_processors.from_settings",
             ],
         },
     },
@@ -160,13 +164,28 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+
+# STATIC_ROOT the absolute path to where you want Django to put the static files that are collected using collectstatic. Your web server will serve static files from this directory.
+STATIC_ROOT = '/var/www/static/'
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
 SITE_ID = 1
 
-
 # Authentication
 ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
 ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+
+# Env color changes
+ENVIRONMENT_NAME = "Production Server"
+ENVIRONMENT_COLOR = "#FF2222"
+ENVIRONMENT_ADMIN_SELECTOR = "grp-header"
+
+try:
+    from local_settings import *
+except ImportError as e:
+    if "local_settings" not in str(e):
+        raise e
+    print("Loaded all settings.")
