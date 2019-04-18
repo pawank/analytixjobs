@@ -10,10 +10,3 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
         fields = ('url', 'username', 'email', 'is_staff')
-
-# ViewSets define the view behavior.
-
-
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = CustomUser.objects.all()
-    serializer_class = UserSerializer

@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 
-from users.serializers import UserSerializer, UserViewSet
+from users.serializers import UserSerializer
+from users.views import UserViewSet
 from .restfw import router
 
 urlpatterns = [
