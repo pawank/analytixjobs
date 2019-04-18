@@ -30,6 +30,13 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,7 +44,25 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'users.apps.UsersConfig',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    # 'allauth.socialaccount.providers.amazon',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.gitlab',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.instagram',
+    # 'allauth.socialaccount.providers.jupyterhub',
+    # 'allauth.socialaccount.providers.linkedin',
+    # 'allauth.socialaccount.providers.linkedin_oauth2',
+    # 'allauth.socialaccount.providers.openid',
+    # 'allauth.socialaccount.providers.slack',
+    # 'allauth.socialaccount.providers.twitter',
+    # 'allauth.socialaccount.providers.windowslive',
 ]
 
 MIDDLEWARE = [
@@ -138,3 +163,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+SITE_ID = 1
+
+
+# Authentication
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"

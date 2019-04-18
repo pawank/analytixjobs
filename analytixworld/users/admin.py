@@ -5,6 +5,10 @@ from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from .models import CustomUser
 
+from django.contrib.auth.decorators import login_required
+
+admin.site.login = login_required(admin.site.login)
+
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
