@@ -16,6 +16,7 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
+ENVIRONMENT = os.getenv('ENVIRONMENT', 'development')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -67,6 +68,8 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.twitter',
     # 'allauth.socialaccount.providers.windowslive',
     'rest_framework',
+    'companies.apps.CompaniesConfig',
+    'jobs.apps.JobsConfig',
 ]
 
 MIDDLEWARE = [
@@ -195,9 +198,24 @@ REST_FRAMEWORK = {
     ]
 }
 
+if ENVIRONMENT == 'production':
+    DEBUG = False
+    SECRET_KEY = os.getenv('SECRET_KEY')
+    SESSION_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_REDIRECT_EXEMPT = []
+    SECURE_SSL_REDIRECT = True
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+else:
+    DEBUG = True
+'''
 try:
     from local_settings import *
 except ImportError as e:
     if "local_settings" not in str(e):
         raise e
     print("Loaded all settings.")
+'''
