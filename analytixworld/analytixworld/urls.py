@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 from users.serializers import UserSerializer, GroupSerializer
 from users.views import UserViewSet, GroupViewSet
+# For RESTful Django API FW router and its auto generated URLs
 from .restfw import router
 
 urlpatterns = [
