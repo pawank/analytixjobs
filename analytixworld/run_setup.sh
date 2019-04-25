@@ -1,6 +1,7 @@
 #!/bin/bash - 
 
 brew install pipenv
+#for ubuntu: pip install --user pipenv
 export PIPENV_VENV_IN_PROJECT=1
 pipenv --python 3.7
 pipenv install --dev
