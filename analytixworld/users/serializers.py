@@ -9,7 +9,8 @@ from users.models import CustomUser
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CustomUser
-        fields = ('url', 'username', 'email', 'is_staff', 'groups')
+        fields = ('url', 'username', 'email', 'first_name',
+                  'last_name', 'is_staff', 'groups')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):

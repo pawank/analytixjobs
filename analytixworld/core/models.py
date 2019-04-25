@@ -1,6 +1,7 @@
 from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 from users.models import CustomUser
+from django.utils import timezone
 
 
 class Core(models.Model):
@@ -20,3 +21,7 @@ class Core(models.Model):
 
     def __str__(self):
         return self.change_title
+
+    def save(self, *args, **kwargs):
+        self.updated_on = timezone.now()
+        super().save(*args, **kwargs)

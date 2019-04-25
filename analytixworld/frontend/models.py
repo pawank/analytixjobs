@@ -4,7 +4,6 @@ from django.contrib.auth.models import AbstractUser, User
 from django.db import models
 from users.models import CustomUser
 from companies.models import Company
-from django.utils import timezone
 
 
 class Subscribe(models.Model):
