@@ -6,7 +6,6 @@ from django.http import HttpResponse
 from django.shortcuts import render, render_to_response
 from django.contrib.auth.decorators import login_required
 from django.template import RequestContext, loader
-
 from frontend.models import Subscribe
 
 
@@ -29,9 +28,10 @@ def subscribe(request):
         status.save()
         pk = status.id
         message = {
-            "id": pk, "message": "Thank you for subscribing to the newsletter."}
+            "id": pk, "message": "Thank you for subscribing to the newsletter. Have a nice day!"}
     print(message)
-    context = RequestContext(request, {"message": message})
+    #context = RequestContext(request, {"customer_message": message})
+    context = {"customer_message": message}
     response = render_to_response(
-        "frontend/index.html", {}, context)
+        "frontend/index.html", context=context)
     return response
