@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'companies.apps.CompaniesConfig',
     'jobs.apps.JobsConfig',
+    'frontend.apps.FrontendConfig',
 ]
 
 MIDDLEWARE = [
@@ -87,7 +88,7 @@ ROOT_URLCONF = 'analytixworld.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'frontend/templates'), ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,6 +101,8 @@ TEMPLATES = [
         },
     },
 ]
+
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 WSGI_APPLICATION = 'analytixworld.wsgi.application'
 

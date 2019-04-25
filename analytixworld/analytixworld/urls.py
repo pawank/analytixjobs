@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.urls import path
 
 from users.serializers import UserSerializer, GroupSerializer
 from users.views import UserViewSet, GroupViewSet
@@ -24,7 +25,9 @@ from users.views import UserViewSet, GroupViewSet
 from .restfw import router
 
 urlpatterns = [
-    url(r'^', include(router.urls)),
+    url(r'^', include('frontend.urls')),
+    url(r'^api/', include(router.urls)),
+    # path('/', include('frontend.urls')),
     url('grappelli/', include('grappelli.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('allauth.urls')),
