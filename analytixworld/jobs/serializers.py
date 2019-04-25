@@ -11,4 +11,4 @@ class JobSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Job
         fields = '__all__'
-        ordering = ['-created']
+        ordering = ['-created_on']

@@ -10,5 +10,5 @@ from companies.serializers import CompanySerializer
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
-    queryset = Company.objects.all().order_by('-created')
+    queryset = Company.objects.all().order_by('-created_on')
     serializer_class = CompanySerializer

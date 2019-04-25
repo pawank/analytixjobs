@@ -10,4 +10,4 @@ class CompanySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Company
         fields = '__all__'
-        ordering = ['-created']
+        ordering = ['-created_on']

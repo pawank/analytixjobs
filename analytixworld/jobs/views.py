@@ -8,5 +8,5 @@ from jobs.serializers import JobSerializer
 
 
 class JobViewSet(viewsets.ModelViewSet):
-    queryset = Job.objects.all().order_by('-created')
+    queryset = Job.objects.all().order_by('-created_on')
     serializer_class = JobSerializer

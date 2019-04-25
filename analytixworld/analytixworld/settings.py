@@ -68,6 +68,7 @@ INSTALLED_APPS = [
     # 'allauth.socialaccount.providers.twitter',
     # 'allauth.socialaccount.providers.windowslive',
     'rest_framework',
+    'core.apps.CoreConfig',
     'companies.apps.CompaniesConfig',
     'jobs.apps.JobsConfig',
     'frontend.apps.FrontendConfig',

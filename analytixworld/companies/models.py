@@ -1,9 +1,10 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from core.models import Core
 from users.models import CustomUser
 
 
-class Company(models.Model):
+class Company(Core):
     name = models.CharField(verbose_name="Company name", max_length=255,
                             null=True, blank=False)
     registered_name = models.CharField(verbose_name="Registered Company name", max_length=255,
@@ -12,12 +13,10 @@ class Company(models.Model):
                                        null=True, blank=True)
     website = models.URLField(
         verbose_name="Website", null=True, blank=True)
-    owner = models.ForeignKey(
-        'users.customuser', related_name='companies', on_delete=models.CASCADE)
-    created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ('created',)
+        ordering = ('-created_on', 'name')
+        #verbose_name_plural = "Company"
 
     def __str__(self):
         return self.name

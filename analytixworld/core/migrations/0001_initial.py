@@ -12,15 +12,15 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Subscribe',
+            name='Core',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, null=True, verbose_name='Name of person')),
-                ('email', models.EmailField(max_length=255, null=True, verbose_name='Email address')),
-                ('created', models.DateTimeField(auto_now_add=True)),
+                ('change_title', models.CharField(blank=True, max_length=255, null=True, verbose_name='Changes done')),
+                ('created_on', models.DateTimeField(auto_now_add=True)),
+                ('updated_on', models.DateTimeField()),
             ],
             options={
-                'ordering': ('created',),
+                'ordering': ('-updated_on', '-created_on'),
             },
         ),
     ]
