@@ -72,6 +72,8 @@ INSTALLED_APPS = [
     'companies.apps.CompaniesConfig',
     'jobs.apps.JobsConfig',
     'frontend.apps.FrontendConfig',
+    'phonenumber_field',
+    'djmoney',
 ]
 
 MIDDLEWARE = [

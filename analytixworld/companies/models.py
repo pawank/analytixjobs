@@ -5,9 +5,9 @@ from users.models import CustomUser
 
 
 class Company(Core):
-    name = models.CharField(verbose_name="Company name", max_length=255,
+    name = models.CharField(verbose_name="Company name", max_length=500,
                             null=True, blank=False)
-    registered_name = models.CharField(verbose_name="Registered Company name", max_length=255,
+    registered_name = models.CharField(verbose_name="Registered Company name", max_length=500,
                                        null=True, blank=True)
     no_employees = models.IntegerField(verbose_name="No of Employees",
                                        null=True, blank=True)
