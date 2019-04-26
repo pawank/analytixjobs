@@ -20,6 +20,7 @@ django-filter = "*"
 django-phonenumber-field = "*"
 phonenumbers = "*"
 django-money = "*"
+django-taggit = "*"
 
 [requires]
 python_version = "3.7"

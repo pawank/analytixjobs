@@ -22,4 +22,4 @@ class CustomUser(AbstractUser):
                                     null=True, blank=True, default="")
 
     def __str__(self):
-        return self.email
+        return self.email or ''

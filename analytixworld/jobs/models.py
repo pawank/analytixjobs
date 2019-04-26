@@ -5,6 +5,7 @@ from users.models import CustomUser
 from companies.models import Company
 from phonenumber_field.modelfields import PhoneNumberField
 from djmoney.models.fields import MoneyField
+from taggit.managers import TaggableManager
 
 
 class Employer(models.Model):
@@ -20,7 +21,7 @@ class Employer(models.Model):
     description = models.TextField(verbose_name="Description",
                                    null=True, blank=True)
 
-    address = models.TextField(verbose_name="Description",
+    address = models.TextField(verbose_name="Address",
                                null=True, blank=False)
     '''
     primary_phone_no = PhoneNumberField(
@@ -40,7 +41,7 @@ class Employer(models.Model):
         #verbose_name_plural = "Company"
 
     def __str__(self):
-        return self.name
+        return self.name or ''
 
 
 class Job(Core):
@@ -64,8 +65,8 @@ class Job(Core):
                                    null=True, blank=False)
     skills = models.TextField(verbose_name="Job Skills",
                               null=True, blank=True)
-    education = models.TextField(verbose_name="Education",
-                                 null=True, blank=True)
+    education = models.FloatField(verbose_name="Education (in Years)",
+                                  null=True, blank=True, default=0.0)
     experience = models.TextField(verbose_name="Experience",
                                   null=True, blank=True)
     location = models.CharField(verbose_name="Location",
@@ -77,10 +78,20 @@ class Job(Core):
     ending_salary = MoneyField(max_digits=19, decimal_places=4,
                                default_currency='USD', null=True, blank=True)
 
+    linkedin_url = models.URLField(
+        verbose_name="Job LinkedIn URL", null=True, blank=True)
+    google_url = models.URLField(
+        verbose_name="Job Google URL", null=True, blank=True)
+    facebook_url = models.URLField(
+        verbose_name="Job Facebook URL", null=True, blank=True)
+    more_info_url = models.URLField(
+        verbose_name="Job More Info URL", null=True, blank=True)
+    tags = TaggableManager()
+
     class Meta:
         ordering = ('-created_on', 'title',)
         #verbose_name_plural = "Job"
         pass
 
     def __str__(self):
-        return self.title
+        return self.title or ''

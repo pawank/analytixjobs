@@ -20,7 +20,7 @@ class Core(models.Model):
         #abstract = True
 
     def __str__(self):
-        return self.change_title
+        return self.change_title or ''
 
     def save(self, *args, **kwargs):
         self.updated_on = timezone.now()
